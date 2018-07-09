@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Microsoft YaHei", sans-serif !important;
+    font-size: 16px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header{
+    width: 100%;
+    height: 148px;
+    position: absolute;
+    z-index: 1;
+}
+/***header部分样式***start****/
+.div-title{
+    background: url("../images/title-image.png");
+    background-size: 100% 100%;
+    height: 80px;
+    width: 100%;
+}
+#div_small_title{
+    position: absolute;
+    top: 32px;
+    left: 206px;
+    height: 37px;
+    line-height: 37px;
+    color: white;
+    font-family: myFont;
+    font-size: 21px;
+}
+#menu{
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    left: 12px;
+    top: 30px;
+    background: url("../images/menu.png");
+    width: 42px;
+    height: 42px;
+    vertical-align: top;
+}
+.div-title-second{
+    background-color: #173664;
+    width: 118px;
+    height: 35px;
+    border: 1px solid #1e4988;
+    display: inline-block;
+    position: absolute;
+    left: 66px;
+    top: 32px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 30px;
+    color: #29d1ff;
+    font-size: 24px;
+    cursor: pointer;
+}
+.div_title_third{
+    font-family: '汉仪菱心体简';
+    display: inline-block;
+    position: absolute;
+    left: 198px;
+    top: 37px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 30px;
+    color:#ffffff;
+    font-size: 24px;
+}
+#div_header_right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+}
+#div_header_datetime{
+    float: right;
+    /* display: inline-block; */
+    vertical-align: top;
+    /* position: absolute; */
+    /* right: 300px; */
+    /* top: 40px; */
+    color: white;
+    /* position: relative; */
+    /* top: 30px; */
+    margin-top: 40px;
+    margin-right: 16px;
+}
+#div_header_date{
+    display: inline-block;
+}
+#div_header_time{
+    display: inline-block;
+    margin-left: 20px;
+}
+#div_header_weather{
+    float: right;
+    margin-right: 16px;
+}
+#img_header_weather{
+    width: 50px;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 16px;
+    display: inline-block;
+    vertical-align: unset;
+}
+#div_weather_text{
+    display: inline-block;
+    color: white;
+}
+#div_weather_desc, #div_weather_temp{
+    display: inline-block;
+}
+#div_header_exit{
+    background: url("../images/exit.png");
+    float: right;
+    margin-right: 12px;
+    margin-top: 30px;
+    width: 42px;
+    height: 42px;
+    margin-left: 16px;
+    cursor: pointer;
+}
+.header-split{
+    background: url("../images/header-split.png");
+    width: 1px;
+    height: 43px;
+    float: right;
+    margin-top: 30px;
+}
+#iframe_map{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    /*opacity: 0.7;*/
+    border: none;
+}
+/***header部分样式***end****/
+
+/***索引部分样式***start****/
+@font-face {
+    font-family: myFont;
+    src: url('汉仪菱心体简.ttf');
+}
+@-webkit-keyframes circle{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+}
+.mainContent{
+    position: absolute;
+    top: 75px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-image: url(../images/indexpage/bg.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+
+}
+.mainContent div{
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
+}
+.div_4{
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    min-width: 229px;
+    float: left;
+}
+.div_3_d{
+    width: 33.33333%;
+    height: 100%;
+    text-align: center;
+    min-width: 289px;
+    float: left;
+    margin-top: -50px;
+}
+.div_3{
+    width: 33.33333%;
+    height: 100%;
+    text-align: center;
+    min-width: 229px;
+    float: left;
+}
+
+.icon_content{
+    margin:0 auto;
+    width: 229px;
+    height: 229px;
+    cursor: pointer;
+}
+.icon_content_d{
+    margin:0 auto;
+    width: 289px;
+    height: 289px;
+    cursor: pointer;
+    margin-top: -135px;
+}
+.icon_content_small{
+    margin:0 auto;
+    width: 229px;
+    height: 229px;
+    background-image: url(../images/indexpage/icon_bg.png);
+    cursor: pointer;
+
+}
+.icon_content_big{
+    margin:0 auto;
+    width: 289px;
+    height: 289px;
+    background-image: url(../images/indexpage/dtlk_icon_bg.png);
+    cursor: pointer;
+}
+
+.small_rotate{
+    background-image: url(../images/indexpage/icon_bg_hover.png);
+    -webkit-animation:circle 3s infinite linear;/*匀速 循环*/
+}
+.big_rotate{
+    background-image: url(../images/indexpage/dtlk_icon_bg_hover.png);
+    -webkit-animation:circle 2.5s infinite linear;/*匀速 循环*/
+}
+
+.icon_top{
+    width: 100%;
+    height: 230px;
+    padding-top: 12%;
+    display: flex;
+    justify-content: space-around;
+}
+.icon_bottom{
+    width: 100%;
+    height: 230px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 100px;
+    box-sizing: border-box !important;
+}
+.icon_text_small{
+    font-family: '汉仪菱心体简';
+    margin:0 auto;
+    height:229px ;
+    line-height: 229px;
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: -229px;
+}
+.icon_text_big{
+    font-family: '汉仪菱心体简';
+    margin:0 auto;
+    height:289px ;
+    line-height: 289px;
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: -289px;
+}
+/*底部tab*/
+.footer_content{
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    z-index: 10;
+}
+.footer_tab {
+    margin: 0 auto;
+    /*width: 970px;*/
+    width: 56%;
+    height: 60px;
+    border: 1px rgba(0, 107, 189, 0.9) solid;
+    background-color: rgba(4, 56, 103, 0.9);
+    z-index: 999;
+}
+
+.button_tab {
+    display: inline-block;
+    width: 111px;
+    height: 36px;
+    margin-top: 12px;
+    margin-right: 4px;
+    background-image: url('../images/tab-button.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #2fdfff;
+}
+
+.button_tab:hover {
+    cursor: pointer;
+}
+
+.act {
+    color: #ffffff;
+    background-image: url('../images/tab-button-active.png');
+    background-repeat: no-repeat;
+}
+/***索引部分样式***end****/

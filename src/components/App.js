@@ -4,6 +4,7 @@ import Map from './Map';
 import TrafficBlock from './TrafficBlock';
 import TabButtons from './TabButtons';
 import {Route,Switch} from 'react-router-dom';
+import {store} from "../redux/redux";
 
 class App extends React.Component{
     render(){
@@ -15,7 +16,6 @@ class App extends React.Component{
                     <Switch>
                         <Route path="/trafficBlock" component={TrafficBlock}></Route>
                     </Switch>
-
                 </div>
 
         )

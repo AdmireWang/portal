@@ -2,15 +2,18 @@ import React from 'react';
 import '../css/header.css'
 import weatherImg from '../images/weather.png'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class Header extends React.Component{
     render(){
-        const {title,titleClick} = this.props;
+        const {title,currentPage,setLevel} = this.props;
         return(
             <div className="header">
                 <div className="div-title"></div>
                 <div id="menu"></div>
-                <div id="div_title" className="div-title-second" onClick={titleClick}>{title}</div>
+                <Link to={"/"+currentPage}>
+                    <div id="div_title" className="div-title-second" onClick={()=>{setLevel(1)}}>{title}</div>
+                </Link>
                 <div id="div_title_third" className="div_title_third"></div>
                 <div id="div_header_right">
                     <div id="div_header_exit" onClick="window.location.href='../portal/index';"></div>
@@ -37,10 +40,12 @@ class Header extends React.Component{
 }
 
 function mapStateToProps(state){
-    return {title: state.title}
+    return {title: state.title,currentPage: state.currentPage}
 }
 function mapDispatchToProps(dispatch) {
-    return {titleClick: () => dispatch({type: "titleClick"})}
+    return {
+        setLevel: (level) => dispatch({type:"SET_CURRENT_LEVEL",payload:{currentLevel:level}})
+    }
 }
 
 // const Header = connect(

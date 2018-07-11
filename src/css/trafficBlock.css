@@ -272,7 +272,7 @@ body{
     margin: 10px;
 }
 .div-left-in{
-    display: none;
+    /*display: none;*/
     -webkit-animation: leftIn 0.5s;
     -o-animation: leftIn 0.5s;
     animation: leftIn 0.5s;
@@ -281,7 +281,7 @@ body{
     -webkit-animation: rightIn 0.5s;
     -o-animation: rightIn 0.5s;
     animation: rightIn 0.5s;
-    display: none;
+    /*display: none;*/
 }
 @keyframes leftIn{
     from{
@@ -579,7 +579,7 @@ body{
     position: absolute;
     top: 102px;
     right: 12px;
-    display: none;
+    /*display: none;*/
 }
 .span-tb-hb{
     color: #ff3873;
@@ -666,4 +666,34 @@ body{
 }
 .div-block-col-border-bottom{
     border-bottom: 1px solid #3f7ccc;
+}
+
+.button_tab a{
+    color: #2fdfff;
+    text-decoration: none;
+}
+.button_tab a:link{
+    color: #2fdfff;
+    text-decoration: none;
+}
+.button_tab a:visited{
+    color: #2fdfff;
+    text-decoration: none;
+}
+.button_tab a:hover{
+    color: #2fdfff;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
 }

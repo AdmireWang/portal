@@ -1,32 +1,40 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk'
 
 function reducer(state={
-    leftDisplay: "block",
-    rightDisplay: "block",
-    blockRankBoxDisplay: "none",
-    title: "道路阻断"
+    title: "道路阻断",
+    totalBlockNum: 0,
+    currentPage:"/",
+    currentLevel:1
 },action){
     switch (action.type){
-        case "showBlockRankBox":
+        case "GET_DATA":
+            return {...state}
+        case "GET_DATA_SUCCESS":
             return {
-                ...state,
-                leftDisplay: "none",
-                rightDisplay: "none",
-                blockRankBoxDisplay: "block"
+            ...state,
+            totalBlockNum: action.payload.blockCount
+        }
+        case "GET_DATA_FAILED":
+            return {
+                ...state
             }
-        case "titleClick":
+        case "SET_CURRENT_PAGE":
             return {
                 ...state,
-                leftDisplay: "block",
-                rightDisplay: "block",
-                blockRankBoxDisplay: "none"
+                currentPage: action.payload.currentPage
+            }
+        case "SET_CURRENT_LEVEL":
+            return {
+                ...state,
+                currentLevel: action.payload.currentLevel
             }
         default:
             return state;
     }
 }
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 
 

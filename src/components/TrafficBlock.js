@@ -4,6 +4,10 @@ import BoxTitle from './BoxTitle';
 import Box from './Box';
 import BackNumber from './BackNumber';
 import {connect} from "react-redux";
+import {store} from "../redux/redux";
+import PanelSmall from './PanelSmall';
+import {Link,Route} from 'react-router-dom';
+
 
 class TrafficBlock extends React.Component{
     // constructor(){
@@ -23,41 +27,98 @@ class TrafficBlock extends React.Component{
     //     }
     //     this.setState(state);
     // }
+    componentDidMount(){
+        store.dispatch({
+            type: 'SET_CURRENT_PAGE',
+            payload:{
+                currentPage: "trafficBlock"
+            }
+        });
+        // store.dispatch({
+        //     type: "SET_CURRENT_LEVEL",
+        //     payload: {
+        //         currentLevel: 1
+        //     }
+        // });
+        store.dispatch(getDataAction());
+    }
     render(){
-        const {leftDisplay,rightDisplay,blockRankBoxDisplay,blockTotalClick} = this.props;
+        const {totalBlockNum,setLevel,match,currentLevel} = this.props;
+        const firstLevelDisplay = currentLevel == 1 ? "block" : "none";
         return(
             <div>
-                <Container position="left" display={leftDisplay}>
+                <Container position="left" display={firstLevelDisplay}>
                     <BoxTitle content="当前数据统计"/>
-                    <Box id="div_block_total_count" title="阻断事件总数" onClick={blockTotalClick}>
-                        <div id="div_block_total_content" className="div-block-total-content">
-                            <BackNumber number="77"/>
+                    <Link to={`${match.url}/currentBlock`}>
+                        <Box id="div_block_total_count" title="阻断事件总数">
+                            <div id="div_block_total_content" className="div-block-total-content">
+                                <BackNumber number={totalBlockNum}/>
+                            </div>
+                        </Box>
+                    </Link>
+                    <Box title="封闭里程">
+                        <div className="div-cols-container">
+                            <PanelSmall text="封闭收费站" num="5" unit="个" className="div-block-col-border-right div-block-col-border-bottom"/>
+                            <PanelSmall text="限型收费站" num="14" unit="个" className="div-block-col-border-bottom"/>
+                            <PanelSmall text="封闭总里程" num="3231" unit="km" className="div-block-col-border-right"/>
+                            <PanelSmall text="限型总里程" num="14" unit="km" className=""/>
                         </div>
                     </Box>
-                    <Box title="封闭里程"/>
                 </Container>
-                <Container position="right" display={rightDisplay}>
+                <Container position="right" display={firstLevelDisplay}>
                     <BoxTitle content="当前数据统计"/>
                     <Box title="阻断事件总数" />
                 </Container>
-                <Box title="当前阻断事件" id="div_road_traffic_index_list" display={blockRankBoxDisplay}/>
+
+                <Route path={`${match.path}/currentBlock`} render={({match})=>{
+                    setLevel(2);
+                    return <Box title="当前阻断事件" id="div_road_traffic_index_list" className="div-right-in"/>
+                }} />
             </div>
         )
     }
 }
 
+const GET_DATA = 'GET_DATA',
+    GET_DATA_SUCCESS = 'GET_DATA_SUCCESS',
+    GET_DATA_FAILED = 'GET_DATA_FAILED';
+
+const getDataAction =function (id) {
+    return function (dispatch, getState) {
+        dispatch({
+            type: GET_DATA,
+            payload: id
+        });
+        fetch("http://localhost/smartroad/portal/getBlockCount").then(function (response) {
+            if(response.status == 200){
+                response.json().then(function (data) {
+                    console.log(data);
+                    dispatch({
+                        type: GET_DATA_SUCCESS,
+                        payload: data
+                    })
+                });
+            }
+        }).catch(function (error) {
+            dispatch({
+                type: GET_DATA_FAILED,
+                payload: error
+            })
+        })
+    }
+}
+
 function mapStateToProps(state){
     return {
-        leftDisplay: state.leftDisplay,
-        rightDisplay: state.rightDisplay,
-        blockRankBoxDisplay: state.blockRankBoxDisplay,
-        title: state.title
+        title: state.title,
+        totalBlockNum: state.totalBlockNum,
+        currentLevel: state.currentLevel
     }
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        blockTotalClick: () => dispatch({type:"showBlockRankBox"})
+        setLevel: (level) => dispatch({type:"SET_CURRENT_LEVEL",payload:{currentLevel:level}})
     }
 }
 
